@@ -10,7 +10,7 @@ Desenvolvido uma aplicação para adicionar tarefas.
 - Remover uma tarefa
 - Marcar e desmarcar uma tarefa como concluída
 
-Além disso acrescentei uma mensagem caso o usuário não tenha nenhuma tarefa adicionada, e salvei as tarefas no LocalStorage.
+Além disso acrescentei uma mensagem caso o usuário não tenha nenhuma tarefa adicionada.
 
 # Preview
 
