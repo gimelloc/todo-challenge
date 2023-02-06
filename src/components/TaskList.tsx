@@ -2,6 +2,7 @@ import { useState } from 'react';
 import '../styles/tasklist.scss'
 import { FiTrash, FiCheckSquare } from 'react-icons/fi'
 import { Notepad } from 'phosphor-react';
+
 interface Task {
   id: number;
   title: string;
