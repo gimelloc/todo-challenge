@@ -1,9 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import '../styles/tasklist.scss'
 import { FiTrash, FiCheckSquare } from 'react-icons/fi'
 import { Notepad } from 'phosphor-react';
-
-const LOCAL_STORAGE_KEY = "todo:saveTasks";
 interface Task {
   id: number;
   title: string;
@@ -14,25 +12,10 @@ export function TaskList() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [newTaskTitle, setNewTaskTitle] = useState('');
 
-  function loadSavedTasks(){
-    const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
-    if (saved){
-      setTasks(JSON.parse(saved));
-    }
-  }
-
-  useEffect(() => {
-    loadSavedTasks();
-  }, [])
-
-  function saveTasks(newTasks: Task[]){
-    setTasks(newTasks)
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newTasks));
-  }
 
   function handleCreateNewTask() {
     if (!newTaskTitle) return;
-    saveTasks([
+    setTasks([
       ...tasks,
       {
         id: Math.random(),
@@ -48,12 +31,12 @@ export function TaskList() {
       ...task,
       isComplete: !task.isComplete
     } : task);
-    saveTasks(taskCompleted);
+    setTasks(taskCompleted)
   }
 
   function handleRemoveTask(id: number) {
     const newTasks = tasks.filter(task => task.id !== id);
-    saveTasks(newTasks);
+    setTasks(newTasks);
   }
 
   return (
@@ -64,7 +47,7 @@ export function TaskList() {
         <div className="input-group">
           <input 
             type="text" 
-            placeholder="Adicionar nova tarefa" 
+            placeholder="Adicionar novo todo" 
             onChange={(e) => setNewTaskTitle(e.target.value)}
             value={newTaskTitle}
           />
